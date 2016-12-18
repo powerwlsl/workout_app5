@@ -19,26 +19,23 @@
         <li class="nav-item">
           <%= link_to "Athletes Den", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="supportedContentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="supportedContentDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+        <li class="nav-item navbar-right">
+          <%= link_to "Sign up", cancel_user_registration_path, class: "nav-link" %>
         </li>
       </ul>
-      <form class="form-inline float-xs-right">
-        <input class="form-control" type="text" placeholder="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </nav>
   </header>
   
   <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <% flash.each do |key,msg| %>
+          <div class="text-center alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
+            <%= msg %>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <%= yield %>
   </div> 
   </body>
