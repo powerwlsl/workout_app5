@@ -20,7 +20,16 @@
           <%= link_to "Athletes Den", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item navbar-right">
-          <%= link_to "Sign up", cancel_user_registration_path, class: "nav-link" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item navbar-right">
+          <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+        <div class="navbar-right">
+          <p class="navbar-text">Signed in as <%= current_user.email %></p>
+        </div>
+        <% end %>
         </li>
       </ul>
     </nav>
