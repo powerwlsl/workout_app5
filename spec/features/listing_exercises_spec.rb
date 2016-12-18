@@ -21,9 +21,9 @@ RSpec.feature "Create Exercise" do
     expect(page).to have_content(@e2.date)
     expect(page).to have_content(@e2.detail)
 
-    # expect(page).not_to have_content(@e3.duration)
-    # expect(page).not_to have_content(@e3.date)
-    # expect(page).not_to have_content(@e3.detail)
+    expect(page).not_to have_content(@e3.duration)
+    expect(page).not_to have_content(@e3.date)
+    expect(page).not_to have_content(@e3.detail)
   end
 
   scenario "shows no exercises if none created" do 
