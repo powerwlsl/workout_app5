@@ -1,0 +1,22 @@
+<div>
+	<h2 class="show-header">Showing <%= @exercise.user.full_name %>'s Workout Detail</h2>
+</div>
+
+<div>Duration: </div>
+<div>
+	<%= @exercise.duration %>
+</div>
+
+<div>Detail: </div>
+<div>
+	<%= @exercise.detail %>
+</div>
+
+<div>Date: </div>
+<div>
+	<%= @exercise.date %>
+</div>
+
+<div>
+	<%= link_to "Back", user_exercises_path(current_user) %>
+</div>
