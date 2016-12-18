@@ -53,7 +53,7 @@ end
 group :development do
   gem 'guard'
   gem 'guard-rspec'
-  # gem 'guard-cucumber'
+  gem 'guard-cucumber'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
