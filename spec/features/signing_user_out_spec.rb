@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User signup" do 
   before do 
-    @user = User.create!(email:"example@gmail.com", password:"password")
+    @user = User.create!(first_name:"John",last_name:"Doe",email:"example@gmail.com", password:"password")
     visit "/"
     click_link "Sign in"
     fill_in "Email", with: "example@gmail.com"

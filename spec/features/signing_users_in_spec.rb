@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User signup" do 
   before do 
-    @user = User.create!(email:"example@gmail.com", password:"password")
+    @user = User.create!(first_name:"John",last_name:"Doe",email:"example@gmail.com", password:"password")
   end
   scenario "with valid credentials" do 
     visit "/"
@@ -12,7 +12,7 @@ RSpec.feature "User signup" do
     click_button "Log in"
 
     expect(page).to have_content("Signed in successfully.")
-    expect(page).to have_content("Signed in as #{@user.email}")
+    expect(page).to have_content("Signed in as #{@user.full_name}")
 
   end  
 end
