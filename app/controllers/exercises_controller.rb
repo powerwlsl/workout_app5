@@ -1,7 +1,6 @@
 class ExercisesController < ApplicationController
   def index
     @exercises = current_user.exercises.where("date > ?", 7.days.ago).order("date DESC")
-    # @exercises = current_user.exercises
   end
 
   def new
