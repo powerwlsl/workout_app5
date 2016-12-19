@@ -6,7 +6,15 @@
         <%= link_to "Home", root_path, class: "nav-link" %>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+
+    <%= form_tag(search_dashboards_path, class: "navbar-form navbar-left", role: "search") do%>
+      <div class="form-group">
+        <%= text_field_tag :search_name, nil,placeholder: "Search for friends", class: "form-control" %>
+        <%= submit_tag "Search", class: "btn btn-default" %>
+      </div>
+    <% end %>
+
+     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>      
       <li class="nav-item">
         <%= link_to "My Lounge",user_exercises_path(current_user),class: "nav-link" %>
