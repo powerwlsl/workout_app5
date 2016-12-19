@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :exercises
+  has_many :followings
+  has_many :friends, through: :followings, class_name:"User"
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -24,4 +26,8 @@ class User < ApplicationRecord
     end
   end
   #class method
+
+  def follows_or_same?(new_friend)
+    followings.map(&:friend).include?(new_friend) || self == new_friend
+  end
 end
