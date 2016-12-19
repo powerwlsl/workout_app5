@@ -1,4 +1,7 @@
 class ExercisesController < ApplicationController
+
+  before_action :set_exercise, only: [:edit, :update, :show, :destroy]
+
   def index
     @exercises = current_user.exercises.where("date > ?", 7.days.ago).order("date DESC")
   end
@@ -19,12 +22,9 @@ class ExercisesController < ApplicationController
   end
 
   def edit
-    @exercise = current_user.exercises.find(params[:id])
   end
 
-  def update
-    @exercise = current_user.exercises.find(params[:id])
-    
+  def update    
     if @exercise.update(exercise_params)
       flash[:notice] = "Exercise has been updated"
       redirect_to [current_user, @exercise]
@@ -35,11 +35,25 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    @exercise = current_user.exercises.find(params[:id])  
+  end
+
+  def destroy
+    if @exercise.destroy
+      flash[:notice] = "Exercise has been deleted"
+      redirect_to user_exercises_path(current_user)
+    else
+      flash.now[:alert] = "Exercise has not been deleted"
+      redirect_to [current_user, @exercise]
+    end
+
   end
 
   private
     def exercise_params
       params.require(:exercise).permit(:duration,:detail,:date)
+    end
+
+    def set_exercise
+      @exercise = current_user.exercises.find(params[:id])
     end
 end
