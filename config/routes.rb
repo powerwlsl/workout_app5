@@ -12,6 +12,6 @@ Rails.application.routes.draw do
       post :search, to: "dashboards#search"
     end
   end
-
   resources :followings
+
 end
