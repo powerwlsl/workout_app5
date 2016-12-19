@@ -3,3 +3,18 @@
 
 <p>Show off your workout to your friends and family</p>
 </div>
+
+<div class="row">
+	<div class="col-md-10">
+		List of Members
+	</div>
+</div>
+
+
+<div class="row">
+	<% @athletes.each do |athlete| %>
+		<div class="col-md-10 well member">
+			<%= athlete.full_name %>
+		</div>
+	<% end %>
+</div>
