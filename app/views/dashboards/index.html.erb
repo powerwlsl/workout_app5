@@ -19,9 +19,9 @@
 
 			<% if current_user && !(current_user.same?(athlete)) %>
 				<% if current_user.follows?(athlete) %>
-					<%= link_to "Unfollow", following_path(athlete), method: :delete, class: "btn btn-danger pull-right" %>
+					<%= render 'unfollow', athlete: athlete %>
 				<% else %>
-					<%= link_to "Follow", followings_path(friend_id: athlete.id),method: :post, class: "btn btn-success pull-right" %>
+					<%= render 'follow', athlete: athlete  %>
 				<% end %>
 			<% end %>
 		</div>

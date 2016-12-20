@@ -1,0 +1,1 @@
+$('.follow-btn-<%= @friend.id %>').replaceWith("<%= escape_javascript(render partial: "dashboards/unfollow", locals: {athlete: @friend}) %>");

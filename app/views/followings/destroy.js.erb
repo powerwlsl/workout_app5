@@ -1,0 +1,11 @@
+
+$('.exercise-unfollow-btn-<%= @friend.id %>').click(function(){
+	// $(".friend-<%= @friend.id %>").remove();
+	$(".friend-<%= @friend.id %>").remove();
+
+});
+
+
+
+
+$('.unfollow-btn-<%= @friend.id %>').replaceWith("<%= escape_javascript(render partial: "dashboards/follow", locals: {athlete: @friend}) %>");

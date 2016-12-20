@@ -1,30 +1,36 @@
 class FollowingsController < ApplicationController
   before_action :authenticate_user!
   def create
-    friend = User.find(params[:friend_id])
+    @friend = User.find(params[:friend_id])
 
     params[:user_id] = current_user.id
-    Following.create(following_params) unless ( current_user.follows?(friend) || current_user.same?(friend) )
-    redirect_to root_path
+    Following.create(following_params) unless ( current_user.follows?(@friend) || current_user.same?(@friend) )
+    
+    respond_to do |f|
+      f.html {redirect_to root_path}
+      f.js
+    end
+
   end
 
   def destroy
-    # friend = current_user.followings.find_by(friend_id: params[:id])
-    # friend = Following.find_by(friend_id: params[:id])
-    following = current_user.followings.find_by(friend_id: params[:id])
+    params[:user_id] = current_user.id
+    @friend = User.find(params[:id])
+    following = current_user.followings.find_by(friend: @friend)    
+
     following.destroy
-    redirect_to root_path
+    
+    respond_to do |f|
+      f.html {redirect_to root_path}
+      f.js
+    end
+
   end
 
   def show
-    # @friend = current_user.followings.find_by(friend_id: params[:id])
-    # @friend = Following.find_by(friend_id: params[:id])
-    
-    # @followed_friend = User.find(params[:id])
-    # @exercises = @followed_friend.exercises.where("date > ?", 7.days.ago).order("date DESC")
     @following = Following.find(params[:id])    
     @followed_friend = User.find(@following.friend_id)
-    @exercises = @followed_friend.exercises
+    @exercises = @followed_friend.exercises.where("date > ?", 7.days.ago).order("date DESC")
   end
 
   private

@@ -1,4 +1,4 @@
-<div class="col-md-8 col-xs-12">
+<div class="col-md-7 col-xs-12">
 	<% unless @exercises.empty? %>
 		<h1> Listing Exercises</h1>
 		<table class="table table-striped">
@@ -36,18 +36,20 @@
  	<%= content_tag :div, "",id: "chart", data: { workouts: @exercises } %>
 </div>
 
-<div class="col-md-4 col-xs-12">
+<div class="col-md-5 col-xs-12">
 	<h1 class="text-center">My friends</h1>
 
 	<% @friends.each do |friend| %>
-		<div class="col-md-offset-3 col-md-6 friend_name">
+	<div class="friend-<%= friend.id %>">
+		<div class="col-md-offset-3 col-md-6">
 			<%= link_to friend.full_name, following_path(current_user.current_following(friend)) %>
 		</div>
 
 		<div class="col-md-3">
 			<div class="btn-unfollow">
-				<%= link_to "Unfollow", following_path(current_user.current_following(friend)), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+				<%= link_to "Unfollow", following_path(friend), method: :delete,remote: true, class: "btn btn-danger pull-right exercise-unfollow-btn-#{friend.id}" %>
 			</div>
+		</div>
 		</div>
 	<% end %>
 </div>
