@@ -36,6 +36,6 @@ class User < ApplicationRecord
   end
 
   def current_following(friend)
-    followings.where(friend:friend).first
+    followings.where(friend: friend).first.id
   end
 end

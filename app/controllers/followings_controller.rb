@@ -18,9 +18,13 @@ class FollowingsController < ApplicationController
 
   def show
     # @friend = current_user.followings.find_by(friend_id: params[:id])
-    @followed_friend = User.find(params[:id])
     # @friend = Following.find_by(friend_id: params[:id])
-    @exercises = @followed_friend.exercises.where("date > ?", 7.days.ago).order("date DESC")
+    
+    # @followed_friend = User.find(params[:id])
+    # @exercises = @followed_friend.exercises.where("date > ?", 7.days.ago).order("date DESC")
+    @following = Following.find(params[:id])    
+    @followed_friend = User.find(@following.friend_id)
+    @exercises = @followed_friend.exercises
   end
 
   private
