@@ -2,7 +2,14 @@
 	<% @athletes.each do |athlete| %>
 		<div class="col-md-10 col-md-offset-2 well member">
 			<%= athlete.full_name %>
-		</div>
+ 			<% if current_user && !(current_user.same?(athlete)) %>
+				<% if current_user.follows?(athlete) %>
+					<%= link_to "Unfollow", following_path(athlete), method: :delete, class: "btn btn-danger pull-right" %>
+				<% else %>
+					<%= link_to "Follow", followings_path(friend_id: athlete.id),method: :post, class: "btn btn-success pull-right" %>
+				<% end %>
+			<% end %>
+		</div>	
 	<% end %>
 </div>
 

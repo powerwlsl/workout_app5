@@ -9,9 +9,18 @@ class FollowingsController < ApplicationController
   end
 
   def destroy
-    friend = Following.find_by(friend_id: params[:id])
-    current_user.followings.destroy(friend)
+    # friend = current_user.followings.find_by(friend_id: params[:id])
+    # friend = Following.find_by(friend_id: params[:id])
+    following = current_user.followings.find_by(friend_id: params[:id])
+    following.destroy
     redirect_to root_path
+  end
+
+  def show
+    # @friend = current_user.followings.find_by(friend_id: params[:id])
+    @followed_friend = User.find(params[:id])
+    # @friend = Following.find_by(friend_id: params[:id])
+    @exercises = @followed_friend.exercises.where("date > ?", 7.days.ago).order("date DESC")
   end
 
   private
