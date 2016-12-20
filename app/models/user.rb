@@ -34,4 +34,8 @@ class User < ApplicationRecord
   def same?(new_friend)
     self == new_friend
   end
+
+  def current_following(friend)
+    followings.where(friend:friend).first
+  end
 end
